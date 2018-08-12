@@ -1,19 +1,38 @@
 package cn.yzw.until;
 
+import cn.yzw.been.User;
+
+import java.util.List;
+
 /**
  * 简单的分页工具类
  */
-public class PageUtil {
-    private int pageIndex; //当前页
+public class PageUtil<E>{
+    /**
+     * 分页需要携带的数据集合
+     */
+    private List<E> list;
+    private int pageIndex=1; //当前页
     private int pageSize=2; //页大小
     private int pageCount; //总页数
     private int totalCount; //总记录数
 
 
+    public List<E> getList() {
+        return list;
+    }
+
+    public void setList(List<E> list) {
+        this.list = list;
+    }
+
+    /**
+     * 因为现在我们以及确定了 页大小
+     * 在我们知道了总记录数之后，能不能确定总页数
+     */
     public void setTotalCount(int totalCount) {
         if (totalCount>0){
-            //获取总记录数
-            this.totalCount = totalCount;
+            this.totalCount = totalCount;  //获取总记录数
             //总页数=（总记录数%页大小==0）？（总记录数/页大小）:（总记录数/页大小+1）;
             this.pageCount=(totalCount%pageSize==0)?(totalCount/pageSize):(totalCount/pageSize+1);
         }
@@ -64,9 +83,10 @@ public class PageUtil {
     @Override
     public String toString() {
         return "PageUtil{" +
-                "pageIndex=" + pageIndex +
+                "list=" + list +
+                ", pageIndex=" + pageIndex +
                 ", pageSize=" + pageSize +
-                ", pageICount=" + pageCount +
+                ", pageCount=" + pageCount +
                 ", totalCount=" + totalCount +
                 '}';
     }

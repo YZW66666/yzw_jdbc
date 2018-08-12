@@ -27,12 +27,9 @@ public class UserServlet extends  BaseServlet{
     }
     @Override
     public Class getServletClass() {
-
         return UserServlet.class;
     }
-
     //注册
-
     public  String  register(HttpServletRequest req, HttpServletResponse resp){
         //获取用户输入的参数
         String userName=req.getParameter("username");

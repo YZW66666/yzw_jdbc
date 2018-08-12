@@ -10,9 +10,15 @@ import java.util.List;
 
 public class UserServiceImpl implements UserService{
 
+
+
+
     //
     private UserDao userDao =new UserImpl();
-
+    @Override
+    public List<User> findAllByPage(PageUtil util, Object... params) {
+        return userDao.findAllByPage(util,params);
+    }
     //登陆
     @Override
     public User login(String userName,  String password) {
@@ -31,7 +37,8 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public int deleteByCondition(Serializable id) {
-        return 0;
+
+        return userDao.deleteByCondition(id);
     }
 
     @Override
@@ -48,18 +55,9 @@ public class UserServiceImpl implements UserService{
     public List<User> findAll() {
         return null;
     }
-
     @Override
     public int findRownum() {
-        return 0;
+        return userDao.findRownum();
     }
-
-    @Override
-    public List<User> findAllByPage(PageUtil util, Object... params) {
-        return null;
-    }
-
-
-
 
 }
